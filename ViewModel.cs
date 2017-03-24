@@ -7,10 +7,10 @@ namespace ApiTest
     using System.Data.Entity.ModelConfiguration.Conventions;
     using System.Linq;
 
-    public class Model : DbContext
+    public class ViewModel : DbContext
     {
-        public Model()
-            : base("name=Model") { }
+        public ViewModel()
+            : base("name=ViewModel") { }
         //https://msdn.microsoft.com/en-us/library/jj591583(v=vs.113).aspx
         public virtual DbSet<CommonData> CommonData { get; set; }
 
@@ -26,11 +26,11 @@ namespace ApiTest
     public class CommonData
     {
         [Key]
-        public string methodName { get; set; }
-        public string method { get; set; }
+        public string MethodName { get; set; }
+        public string Method { get; set; }
         [Required]
-        public string endpoint { get; set; }
-        public Uri uri { get; set; }
+        public string Endpoint { get; set; }
+        public Uri Uri { get; set; }
         public Dictionary<string, string> Parameters { get; set; }
         public Dictionary<string, string> Headers { get; set; }
         public string Request { get; set; }
@@ -40,34 +40,34 @@ namespace ApiTest
     public class ExistingMethod
     {
         [Key]
-        public string methodName { get; set; }
+        public string MethodName { get; set; }
         [Required]
-        public string resource { get; set; }
+        public string Resource { get; set; }
         [Required]
-        public string method { get; set; }
+        public string Method { get; set; }
 
         public ExistingMethod(string methN, string res, string meth)
         {
-            this.methodName = methN;
-            this.resource = res;
-            this.method = meth;
+            this.MethodName = methN;
+            this.Resource = res;
+            this.Method = meth;
         }
     }
 
     public class ContextData
     {
-        Model dbContext = new Model();
+        ViewModel dbContext = new ViewModel();
 
         public List<CommonData> GetAllData()
         {
-            return dbContext.CommonData.OrderByDescending(t => t.methodName).ToList();
+            return dbContext.CommonData.OrderByDescending(t => t.MethodName).ToList();
         }
 
-        public bool AddData(CommonData input, string UserName)
+        public bool AddData(CommonData input, string userName)
         {
             try
             {
-                //input.CreatedBy = UserName;
+                //input.CreatedBy = userName;
                 //input.CreatedOn = System.DateTime.Now;
 
                 dbContext.CommonData.Add(input);

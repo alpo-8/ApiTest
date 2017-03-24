@@ -9,7 +9,6 @@
         xml:lang="en-US"
         Title="winequestTest" Height="600" Width="1200" Margin="0" BorderThickness="0" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight">
     <Window.Resources>
-        <c:Data x:Key="FormData"/>
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="MinHeight" Value="25"/>
             <Setter Property="MaxHeight" Value="35"/>
