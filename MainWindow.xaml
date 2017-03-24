@@ -4,22 +4,103 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ApiTest"
-        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" x:Name="ApiTest" x:Class="ApiTest.MainWindow"
+        xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:Custom="http://schemas.devexpress.com/winfx/2008/xaml/printingcore/xtraprinting/native/presentation" x:Name="ApiTest" x:Class="ApiTest.MainWindow" xmlns:c="clr-namespace:ApiTest" 
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1200" ResizeMode="NoResize" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0" BorderThickness="0">
-    <Grid x:Name="CommonGrid" Width="1200" Height="600" ClipToBounds="True">
-        <Label x:Name="EndpointLabel" Content="Endpoint:" HorizontalAlignment="Left" Margin="25,0,0,0" VerticalAlignment="Top" Height="26" Width="60" Grid.Row="1"/>
-        <ComboBox x:Name="MethodName" HorizontalAlignment="Left" Margin="100,0,0,0" VerticalAlignment="Top" Width="120" Height="22" Grid.Row="1"/>
+        xml:lang="en-US"
+        Title="winequestTest" Height="600" Width="1200" Margin="0" BorderThickness="0" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <c:Data x:Key="FormData"/>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="MinHeight" Value="25"/>
+            <Setter Property="MaxHeight" Value="35"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10,5"/>
+            <Setter Property="MinWidth" Value="200"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="MinHeight" Value="25"/>
+            <Setter Property="MaxHeight" Value="35"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10,5"/>
+        </Style>
+        <Style TargetType="{x:Type Label}">
+            <Setter Property="MinHeight" Value="25"/>
+            <Setter Property="MaxHeight" Value="35"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10,5"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="MinHeight" Value="25"/>
+            <Setter Property="MaxHeight" Value="35"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10,5"/>
+            <Setter Property="MinWidth" Value="200"/>
+        </Style>
+    </Window.Resources>
 
+    <Grid x:Name="CommonGrid" ShowGridLines="False" ClipToBounds="True" Margin="10" MinWidth="500" MinHeight="500">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
 
-        <TextBox x:Name="Endpoint" HorizontalAlignment="Left" Height="23" Margin="220,65,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Row="1"/>
+        <Label Grid.Row="0" Grid.Column="0" x:Name="MethodNameLabel" Content="Method:"/>
+        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="MethodName">
+            <ComboBoxItem Content="GetCategories"/>
+            <ComboBoxItem Content="GetProperties"/>
+            <ComboBoxItem Content="GetPropertyNumberById"/>
+            <ComboBoxItem Content="GetAllProducts"/>
+            <ComboBoxItem Content="GetPropertyProducts"/>
+            <ComboBoxItem Content="GetProductByNumber"/>
+            <ComboBoxItem Content="GetProductById"/>
+            <ComboBoxItem Content="GetProductByNumberAndDetail"/>
+            <ComboBoxItem Content="GetProduct"/>
+            <ComboBoxItem Content="CreateProduct"/>
+            <ComboBoxItem Content="UpdatePropertyProduct"/>
+            <ComboBoxItem Content="UpdateRootProduct"/>
+            <ComboBoxItem Content="MergeProductDetails"/>
+            <ComboBoxItem Content="MergeProducts"/>
+            <ComboBoxItem Content="ResetDataBase"/>
+            <ComboBoxItem Content="UpdateCoreList"/>
+            <ComboBoxItem Content="GetCoreList"/>
+        </ComboBox>
+        <Label  Grid.Row="0" Grid.Column="2" x:Name="EndpointLabel" Content="Endpoint:"/>
+        <TextBox Grid.Row="0" Grid.Column="3" Grid.ColumnSpan="2" x:Name="Endpoint" Text="http://ie1adddb01.cloudapp.net/DevelopmentService/Product.svc"/>
+        <Button Grid.Row="0" Grid.Column="6" x:Name="Reset" Content="Reset" />
 
+        <Label Grid.Row="1" Grid.Column="0" x:Name="Param1Label" Content="label"/>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="Param1" Text=""/>
+        <Label  Grid.Row="1" Grid.Column="2" x:Name="AdacoDbInstanceLabel" Content="Adaco-DBInstance:"/>
+        <TextBox Grid.Row="1" Grid.Column="3" x:Name="AdacoDbInstance" Text="Production"/>
+        <Label  Grid.Row="1" Grid.Column="4" x:Name="AdacoTimestampLabel" Content="Adaco-Timestamp:"/>
+        <TextBox Grid.Row="1" Grid.Column="5" x:Name="AdacoTimestamp" Text=""/>
 
+        <Label Grid.Row="2" Grid.Column="0" x:Name="Param2Label" Content="label"/>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="Param2" Text=""/>
+        <Label  Grid.Row="2" Grid.Column="2" x:Name="AdacoUseridLabel" Content="Adaco-Userid:"/>
+        <TextBox Grid.Row="2" Grid.Column="3" x:Name="AdacoUserid" Text="winequest"/>
+        <Label  Grid.Row="2" Grid.Column="4" x:Name="AdacoAuthorizationLabel" Content="Adaco-Authorization:"/>
+        <TextBox Grid.Row="2" Grid.Column="5" x:Name="AdacoAuthorization" Text=""/>
 
-
-
-
-
+        <Label Grid.Row="3" Grid.Column="0" x:Name="Param3Label" Content="label"/>
+        <TextBox Grid.Row="3" Grid.Column="1" x:Name="Param3" Text=""/>
+        <Button Grid.Row="3" Grid.Column="3" x:Name="SendRequest" Content="Send Request" />
+        
+        
 
     </Grid>
+
 </Window>
